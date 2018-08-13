@@ -1,5 +1,4 @@
 import spotipy
-import speech_recognition as sr
 import os
 import spotipy.util as util
 from json.decoder import JSONDecodeError
