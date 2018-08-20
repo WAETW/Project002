@@ -1,8 +1,8 @@
 import spotipy
-import speech_recognition as sr
 import os
 import spotipy.util as util
 from json.decoder import JSONDecodeError
+from speech import speech
 
 scope = ''
 username = ""
@@ -20,6 +20,7 @@ sp = spotipy.Spotify(auth=token)
 devices = sp.devices()
 deviceID = devices['devices'][0]['id']
 deviceName = devices['devices'][0]['name']
+current_volume = devices['devices'][0]['volume_percent']
 #目前播放
 def nowplaying():
     track = sp.current_user_playing_track()
@@ -27,14 +28,18 @@ def nowplaying():
     track = track['item']['name']
     nowplay = "目前播放:"+ artist + " - " + track
     return print(nowplay)
-#歌曲搜尋
+#歌曲搜尋並播放
 def searchsong(q):
     track = sp.search(q, limit=1, offset=0, type='track', market='TW')
     artist = track['tracks']['items'][0]['artists'][0]['name']
     album = track['tracks']['items'][0]['album']['name']
-    track = track['tracks']['items'][0]['name']
-    searchresult = "搜尋結果:"+ artist + " - " + album + " - " + track
-    return print(searchresult)
+    trackname = track['tracks']['items'][0]['name']
+    trackuri = track['tracks']['items'][0]['uri']
+    searchresult = "搜尋結果:"+ artist + " - " + album + " - " + trackname
+    tracklist = []
+    tracklist.append(trackuri)
+    sp.start_playback(deviceID, context_uri=None, uris=tracklist, offset=None)
+    #return print(searchresult)
 #控制
 def spotifycontrol(seq):
     if seq == "目前播放":
@@ -46,3 +51,14 @@ def spotifycontrol(seq):
     elif seq == "上一首":
         sp.previous_track(deviceID)
     elif seq == "搜尋":
+        search = speech()
+        if search == "無法辨識":
+            print("無法辨識")
+        else:
+            searchsong(search)
+    elif seq == "大聲點":
+        set_volume = current_volume + 10
+        sp.volume(set_volume,deviceID)
+    elif seq == "小聲點":
+        set_volume = current_volume -10
+        sp.volume(set_volume,deviceID)
