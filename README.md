@@ -5,6 +5,8 @@
 - 專題成員： 呂晟暐 顏嘉佑 洪聖勛
 
 # 所需套件
-- spotipy
+- spotipy 需到[Github Repository ](https://github.com/plamere/spotipy)更新client.py
 - gTTs
 - Speech Recognition
+- PyAudio
+- pygame
