@@ -17,7 +17,7 @@ def langue():
 
     with speech_recognition.Microphone() as source:
         r.adjust_for_ambient_noise(source, duration=5)
-        
+
         speak('請選擇要翻譯的語言','zh-TW')
         print('請選擇要翻譯的語言(英/中/日)')
 
@@ -49,4 +49,4 @@ lan = {
 
 #translate('日文','你好嗎')
 #translate(langue(),listenTo())
-speak(translate(langue(),listenTo()),r.recognize_google(audio, language='zh-TW'))
+#speak(translate(langue(),listenTo()),r.recognize_google(audio, language='zh-TW'))

@@ -4,17 +4,14 @@ import spotipy.util as util
 from json.decoder import JSONDecodeError
 from speech import speech
 
-scope = ''
+scope = 'user-read-private user-read-playback-state user-modify-playback-state'
 username = ""
-client_id=''
-client_secret=''
-redirect_uri=''
 
 try:
-    token = util.prompt_for_user_token(username,scope,client_id,client_secret,redirect_uri)
+    token = util.prompt_for_user_token(username,scope)
 except (AttributeError, JSONDecodeError):
     os.remove(f".cache-{username}")
-    token = util.prompt_for_user_token(username,scope,client_id,client_secret,redirect_uri)
+    token = util.prompt_for_user_token(username,scope)
 
 sp = spotipy.Spotify(auth=token)
 devices = sp.devices()
