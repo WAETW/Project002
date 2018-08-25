@@ -10,3 +10,5 @@
 - Speech Recognition
 - PyAudio
 - pygame
+- Newsapi-python
+- googletrans
