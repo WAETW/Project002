@@ -49,5 +49,5 @@ lan = {
 }
 
 #translate('日文','你好嗎')
-translate(langue(),listenTo())
+#translate(langue(),listenTo())
 #speak(translate(langue(),listenTo()),r.recognize_google(audio, language='zh-TW'))
