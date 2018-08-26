@@ -12,3 +12,6 @@
 - pygame
 - Newsapi-python
 - googletrans
+- requests
+- BeautifulSoup
+- json
