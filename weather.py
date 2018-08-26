@@ -2,12 +2,36 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from googletrans import Translator
+import speech_recognition
 from pprint import pprint
 
 def getweather():
+    s = speech_recognition.Recognizer()
+    with speech_recognition.Microphone() as source:
+        s.adjust_for_ambient_noise(source, duration=2)
+        print('請說出要查詢的城市')
+        audio = s.listen(source)
+        a = s.recognize_google(audio, language='zh-TW')
+        city = '' + a
+    woeid = dict(台北='2306179',
+    新北='20070569',
+    基隆='2306188',
+    桃園='2298866',
+    新竹='2306185',
+    苗栗='2301128',
+    台中='2306181',
+    彰化='2306183',
+    南投='2306204',
+    雲林='2347346',
+    嘉義='2296315',
+    台南='2306182',
+    高雄='2306180',
+    屏東='2306189',
+    宜蘭='2306198',
+    花蓮='2306187',
+    台東='2306190')
     translate = Translator()
-    woeid = '2306179'
-    res = requests.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D' + woeid + '%20and%20u%3D%22c%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
+    res = requests.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D' + woeid.get(city) + '%20and%20u%3D%22c%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
     data = json.loads(res.text)
 
     data = data['query']['results']['channel']
