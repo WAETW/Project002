@@ -1,6 +1,7 @@
 from googletrans import Translator
 import speech_recognition
 from Speak import speak
+import time
 
 def translateTo():
     sen = speech_recognition.Recognizer()
@@ -38,6 +39,7 @@ def translate(l,say):
     #result = translate.translate('我想吃晚餐',dest=lan.get('日文'))
 
     speak(result.text,lan.get(l))
+    time.sleep(10)
     print (result.text)
     return result.text
 
