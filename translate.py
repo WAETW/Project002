@@ -24,11 +24,8 @@ def langue():
         print('請選擇要翻譯的語言(英/中/日)')
 
         audio = r.listen(source)
-        try:
-            print(r.recognize_google(audio, language='zh-TW'))
-        except:
-            speak('我正在聽','zh-TW')
-
+        print(r.recognize_google(audio, language='zh-TW'))
+        
     return r.recognize_google(audio, language='zh-TW')
 
 
