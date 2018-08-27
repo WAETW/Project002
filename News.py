@@ -11,13 +11,17 @@ def headlines():
 
     return top_headlines
 
+#def articles(word):
+#    all_articles = api.get_everything(q=word)
+#    return all_articles
+
 def articles(word):
 
-    all_articles = api.get_everything(q=word)
+    all_articles = api.get_top_headlines(q=word,country='tw')
 
     return all_articles
-
 def all_news(last):
+    
     for i in range(0,3):
         #print(top_headlines['articles'][i]['title'])
         #print(top_headlines['articles'][i]['description'])
