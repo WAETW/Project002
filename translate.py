@@ -2,7 +2,7 @@ from googletrans import Translator
 import speech_recognition
 from Speak import speak
 
-def listenTo():
+def translateTo():
     sen = speech_recognition.Recognizer()
     with speech_recognition.Microphone() as source:
         sen.adjust_for_ambient_noise(source, duration=5)
@@ -23,8 +23,11 @@ def langue():
         print('請選擇要翻譯的語言(英/中/日)')
 
         audio = r.listen(source)
-        print(r.recognize_google(audio, language='zh-TW'))
-       
+        try:
+            print(r.recognize_google(audio, language='zh-TW'))
+        except:
+            speak('我正在聽','zh-TW')
+
     return r.recognize_google(audio, language='zh-TW')
 
 
@@ -33,11 +36,11 @@ def translate(l,say):
     result = translate.translate(say ,dest=lan.get(l))
     #result = translate.translate(say ,dest=lan.get('日文'))
     #result = translate.translate('我想吃晚餐',dest=lan.get('日文'))
-    
+
     speak(result.text,lan.get(l))
     print (result.text)
     return result.text
-    
+
 
 lan = {
     '英文':'en',
@@ -46,5 +49,5 @@ lan = {
 }
 
 #translate('日文','你好嗎')
-#translate(langue(),listenTo())
+translate(langue(),listenTo())
 #speak(translate(langue(),listenTo()),r.recognize_google(audio, language='zh-TW'))

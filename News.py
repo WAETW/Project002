@@ -12,7 +12,7 @@ def headlines():
     return top_headlines
 
 def articles(word):
-    
+
     all_articles = api.get_everything(q=word)
 
     return all_articles
@@ -31,7 +31,7 @@ def all_news(last):
         time.sleep(45)
     return news
 
-def listenTo():
+def listenToNews():
     r = speech_recognition.Recognizer()
 
     with speech_recognition.Microphone() as source:
@@ -61,6 +61,11 @@ def post(key):
     elif key=='關鍵字':
         all_news(articles(keyword()))
 
+##def test():
+##    for i in range(0,1):
+##      last = api.get_top_headlines(category='sports',country='tw')
+##        news = last['articles'][i]['title']+ '。\n' + last['articles'][i]['description']
+##        print(news)
 
 #post(listenTo()) ##run
 
