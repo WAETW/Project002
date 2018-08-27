@@ -4,9 +4,9 @@ from weather import getweather
 from translate import *
 from News import *
 
-command = speech()
+command = speech("請說:",5)
 if command == "音樂":
-    subcommand = speech()
+    subcommand = speech("使用spotify:",5)
     spotifycontrol(subcommand)
 elif command == "翻譯":
     translate(langue(), translateTo())

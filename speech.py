@@ -1,10 +1,13 @@
 import speech_recognition as sr
-
-def speech():
+from Speak import speak
+import time
+def speech(title,duration):
     r=sr.Recognizer()
     with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source, duration=1)
-        print("請說:")
+        r.adjust_for_ambient_noise(source, duration)
+        print(title)
+        speak(title,'zh-tw')
+        time.sleep(1)
         audio=r.listen(source)
         try:
             recognize = r.recognize_google(audio, language="zh-TW")

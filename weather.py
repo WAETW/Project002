@@ -1,19 +1,17 @@
 import requests
 import json
-#from bs4 import BeautifulSoup
 from googletrans import Translator
 import speech_recognition
-#from pprint import pprint
 from Speak import speak
 import time
 
 def getweather():
     s = speech_recognition.Recognizer()
     with speech_recognition.Microphone() as source:
-        s.adjust_for_ambient_noise(source, duration=1)
-        speak('請說出要查詢的城市','zh-tw')
+        s.adjust_for_ambient_noise(source, duration=5)
         print('請說出要查詢的城市')
-        time.sleep(4)
+        speak('請說出要查詢的城市','zh-tw')
+        time.sleep(2)
         audio = s.listen(source)
         a = s.recognize_google(audio, language='zh-TW')
         city = '' + a
@@ -62,7 +60,7 @@ def getweather():
     condition = translate.translate(text=item['condition']['text'],src='en',dest='zh-TW')
     date = translate.translate(text=item['condition']['date'],src='en',dest='zh-TW')
 
-    print(location.text)
+    #print(location.text)
     #print('風速：' + speed +' 公里/小時')
     #print('濕度：' + humidity + '%\n' + '能見度：' + visibility + '公里\n' + '氣壓：' + pressure + '毫巴')
     #print('日出時間：' + sunrise + '\n日落時間；' + sunset)
