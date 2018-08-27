@@ -10,7 +10,7 @@ username = ""
 try:
     token = util.prompt_for_user_token(username,scope)
 except (AttributeError, JSONDecodeError):
-    os.remove(f".cache-{username}")
+    #os.remove(f".cache-{username}")
     token = util.prompt_for_user_token(username,scope)
 
 sp = spotipy.Spotify(auth=token)
