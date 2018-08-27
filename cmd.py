@@ -9,7 +9,7 @@ if command == "音樂":
     subcommand = speech()
     spotifycontrol(subcommand)
 elif command == "翻譯":
-    trasnlate(langue(), listenTo())
+    translate(langue(), listenTo())
 elif command == "天氣":
     getweather()
 elif command == "新聞":
