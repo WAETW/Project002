@@ -6,7 +6,7 @@ from News import *
 
 if playing_status == "True":
     spotifycontrol("暫停")
-command = speech("Hi",5)
+command = speech("嗨!",5)
 if command == "音樂":
     subcommand = speech("請輸入指令:",5)
     spotifycontrol(subcommand)
