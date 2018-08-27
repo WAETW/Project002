@@ -1,8 +1,8 @@
 from speech import speech
 from spotify_playback_control import spotifycontrol
 from weather import getweather
-import translate
-import News
+from translate import *
+from News import *
 
 command = speech()
 if command == "音樂":
