@@ -1,6 +1,6 @@
 from speech import speech
 from spotify_playback_control import spotifycontrol
-import weather
+from weather import getweather 
 import translate
 
 command = speech()
