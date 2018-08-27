@@ -1,12 +1,14 @@
 from speech import speech
-from spotify_playback_control import spotifycontrol
+from spotify_playback_control import *
 from weather import getweather
 from translate import *
 from News import *
 
-command = speech("請說:",5)
+if playing_status == "True":
+    spotifycontrol("暫停")
+command = speech("Hi",5)
 if command == "音樂":
-    subcommand = speech("使用spotify:",5)
+    subcommand = speech("請輸入指令:",5)
     spotifycontrol(subcommand)
 elif command == "翻譯":
     translate(langue(), translateTo())

@@ -18,13 +18,18 @@ devices = sp.devices()
 deviceID = devices['devices'][0]['id']
 deviceName = devices['devices'][0]['name']
 current_volume = devices['devices'][0]['volume_percent']
+#播放狀態
+def playing_status():
+    track = sp.current_user_playing_track()
+    status = track['is_playing']
+    return status
 #目前播放
 def nowplaying():
     track = sp.current_user_playing_track()
     artist = track['item']['artists'][0]['name']
     track = track['item']['name']
     nowplay = "目前播放:"+ artist + " - " + track
-    return print(nowplay)
+    return nowplay
 #歌曲搜尋並播放
 def searchsong(q):
     track = sp.search(q, limit=1, offset=0, type='track', market='TW')
@@ -40,7 +45,7 @@ def searchsong(q):
 #控制
 def spotifycontrol(seq):
     if seq == "目前播放":
-        nowplaying()
+        print(nowplaying())
     elif seq == "暫停":
         sp.pause_playback(deviceID)
     elif seq == "下一首":
@@ -59,3 +64,5 @@ def spotifycontrol(seq):
     elif seq == "小聲點":
         set_volume = current_volume -10
         sp.volume(set_volume,deviceID)
+    elif seq == "繼續播放":
+        resume()
