@@ -1,6 +1,6 @@
 from speech import speech
 from spotify_playback_control import spotifycontrol
-from weather import getweather 
+from weather import getweather
 import translate
 import News
 
@@ -10,7 +10,7 @@ if command == "音樂":
     spotifycontrol(subcommand)
 elif command == "翻譯":
     trasnlate(langue(), listenTo())
-elif command == "天氣查詢":
+elif command == "天氣":
     getweather()
 elif command == "新聞":
     post(listenTo())
