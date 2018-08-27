@@ -13,5 +13,7 @@ def speech(title,duration,i):
             recognize = r.recognize_google(audio, language="zh-TW")
             print(recognize)
         except sr.UnknownValueError:
-            print("無法辨識!")
+            recognize = "無法辨識!"
+        except sr.UnboundLocalError:
+            recognize = "無法辨識!"
     return recognize

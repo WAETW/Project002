@@ -42,6 +42,14 @@ def searchsong(q):
     tracklist.append(trackuri)
     sp.start_playback(deviceID, context_uri=None, uris=tracklist, offset=None)
     #return print(searchresult)
+#搜尋播放清單並播放
+def searchplaylist(q):
+    playlist = sp.search(q, limit=1, offset=0, type='playlist', market='TW')
+    playlisturi = playlist['playlists']['items'][0]['uri']
+    sp.start_playback(deviceID, context_uri=playlisturi, uris=None, offset=None)
+#繼續播放
+def resume():
+    sp.start_playback(deviceID, context_uri=None, uris=None, offset=None)
 #控制
 def spotifycontrol(seq):
     if seq == "目前播放":
@@ -52,12 +60,18 @@ def spotifycontrol(seq):
         sp.next_track(deviceID)
     elif seq == "上一首":
         sp.previous_track(deviceID)
-    elif seq == "搜尋":
-        search = speech()
-        if search == "無法辨識":
-            print("無法辨識")
+    elif seq == "搜尋歌曲":
+        search = speech("輸入歌名:",5,1)
+        if search == "無法辨識!":
+            print("無法辨識!")
         else:
             searchsong(search)
+    elif seq == "搜尋播放清單":
+        search = speech("輸入清單名稱:",5,2)
+        if search == "無法辨識!":
+            print("無法辨識!")
+        else:
+            searchplaylist(search)
     elif seq == "大聲點":
         set_volume = current_volume + 10
         sp.volume(set_volume,deviceID)
