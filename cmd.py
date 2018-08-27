@@ -11,10 +11,10 @@ if command == "音樂":
     subcommand = speech("請輸入指令:",5,2)
     spotifycontrol(subcommand)
 elif command == "翻譯":
-    translate(langue(), translateTo())
+    translate(speech('請選擇要翻譯的語言',5,3), speech('正在翻譯...',5,2))
 elif command == "天氣":
     getweather()
 elif command == "新聞":
-    post(listenToNews())
+    post(speech('請選擇搜尋方式',5,4))
 else:
     print("...")
