@@ -4,7 +4,7 @@ from weather import getweather
 from translate import *
 from News import *
 
-if playing_status() == "True":
+if playing_status() == True:
     spotifycontrol("暫停")
 command = speech("嗨!",5,1)
 if command == "音樂":
