@@ -1,9 +1,9 @@
 import requests
 import json
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 from googletrans import Translator
 import speech_recognition
-from pprint import pprint
+#from pprint import pprint
 from Speak import speak
 import time
 
