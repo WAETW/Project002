@@ -15,6 +15,6 @@ elif command == "翻譯":
 elif command == "天氣":
     getweather()
 elif command == "新聞":
-    post(speech('請選擇搜尋方式',5,4))
+    post(speech('請選擇搜尋方式',5,2))
 else:
     print("...")
