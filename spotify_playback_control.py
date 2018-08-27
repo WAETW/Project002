@@ -5,7 +5,7 @@ from json.decoder import JSONDecodeError
 from speech import speech
 
 scope = 'user-read-private user-read-playback-state user-modify-playback-state'
-username = ""
+username = "呂晟暐"
 
 try:
     token = util.prompt_for_user_token(username,scope)
