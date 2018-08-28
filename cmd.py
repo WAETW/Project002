@@ -11,9 +11,9 @@ if playing_status() == True:
 command = speech("嗨!",2,1)
 if command == "音樂":
     subcommand = speech("請輸入指令:",2,2)
-    spotifycontrol(subcommand)
     if temp_status == True:
         resume()
+    spotifycontrol(subcommand)
 elif command == "翻譯":
     translate(speech('請選擇要翻譯的語言',2,3), speech('正在翻譯...',2,2))
     if temp_status == True:
