@@ -2,7 +2,7 @@ import requests
 import json
 from googletrans import Translator
 import speech_recognition
-from Speak import speak
+#from Speak import speak
 import time
 
 def getweather():
