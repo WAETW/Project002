@@ -15,8 +15,7 @@ except (AttributeError, JSONDecodeError):
 
 sp = spotipy.Spotify(auth=token)
 devices = sp.devices()
-#deviceID = devices['devices'][0]['id']
-deviceID = '98bb0735e28656bac098d927d410c3138a4b5bca'
+deviceID = devices['devices'][0]['id']
 deviceName = devices['devices'][0]['name']
 current_volume = devices['devices'][0]['volume_percent']
 #播放狀態
