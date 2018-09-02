@@ -10,3 +10,6 @@ def speak(sentence, lang, loops=1):
         mixer.init()
         mixer.music.load('{}.mp3'.format(fp.name))
         mixer.music.play(loops)
+        while mixer.music.get_busy()==True:
+            time.sleep(1)
+        
