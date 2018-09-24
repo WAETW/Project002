@@ -1,5 +1,6 @@
 from newsapi import NewsApiClient
 from Speak import speak
+from speech import speech
 import time
 import speech_recognition
 
