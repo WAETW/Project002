@@ -2,7 +2,7 @@ from googletrans import Translator
 import speech_recognition
 from Speak import speak
 import time
-
+from speech import speech
 
 #翻譯
 def translate(l,say):
