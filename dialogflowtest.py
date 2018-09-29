@@ -46,7 +46,7 @@ def detect_intent_texts(input):
                 if new_category == "頭條":
                     post("頭條")
             elif action == "input.unknown":
-                print("幹你娘不知道啦")
+                print("幹你娘不知道啦") #派三小
 
 
         action_detection(format(response.query_result.action))
