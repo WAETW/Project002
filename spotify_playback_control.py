@@ -47,12 +47,20 @@ def searchplaylist(q):
     playlist = sp.search(q, limit=1, offset=0, type='playlist', market='TW')
     playlisturi = playlist['playlists']['items'][0]['uri']
     sp.start_playback(deviceID, context_uri=playlisturi, uris=None, offset=None)
+#搜尋歌手
+def searchartist(q):
+    playlist = sp.search(q, limit=1, offset=0, type='playlist', market='TW')
+    playlisturi = playlist['playlists']['items'][0]['uri']
+    sp.start_playback(deviceID, context_uri=playlisturi, uris=None, offset=None)
+
 #繼續播放
 def resume():
     sp.start_playback(deviceID, context_uri=None, uris=None, offset=None)
+
 #控制
-def spotifycontrol(seq):
+def spotifycontrol(seq,search):
     if seq == "目前播放":
+        #speak(nowplaying(),zh-tw)
         print(nowplaying())
     elif seq == "暫停":
         sp.pause_playback(deviceID)
@@ -67,16 +75,14 @@ def spotifycontrol(seq):
         else:
             searchsong(search)
     elif seq == "搜尋播放清單":
-        search = speech("輸入清單名稱:",5,2)
-        if search == "無法辨識!":
-            print("無法辨識!")
-        else:
-            searchplaylist(search)
+        searchplaylist(search)
+    elif seq == "搜尋歌手":
+        searchartist(search)
     elif seq == "大聲點":
         set_volume = current_volume + 10
         sp.volume(set_volume,deviceID)
     elif seq == "小聲點":
         set_volume = current_volume -10
         sp.volume(set_volume,deviceID)
-    elif seq == "繼續播放":
+    elif seq == "播放":
         resume()
