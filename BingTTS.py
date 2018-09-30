@@ -56,11 +56,13 @@ def TTS(sentence,la):
 
     wavplay(sound)
 
+#TTS語言
 language = {
     '中文' : 'zh-TW',
     '英文' : 'en-US',
     '日文' : 'ja-JP'
 }
+#TTS聲音
 vo = {
     '中文' : 'Microsoft Server Speech Text to Speech Voice (zh-TW, Yating, Apollo)',
     '英文' : 'Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)',
