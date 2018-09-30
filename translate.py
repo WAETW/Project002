@@ -1,8 +1,9 @@
 from googletrans import Translator
 import speech_recognition
 from Speak import speak
-import time
+#import time
 from speech import speech
+from BingTTS import TTS
 
 #翻譯
 def translate(l,say):
@@ -11,8 +12,8 @@ def translate(l,say):
     #result = translate.translate(say ,dest=lan.get('日文'))
     #result = translate.translate('我想吃晚餐',dest=lan.get('日文'))
 
-    speak(result.text,lan.get(l))
-    time.sleep(10)
+    #speak(result.text,lan.get(l))
+    TTS(result.text,lan.get(l))
     print (result.text)
     return result.text
 
