@@ -6,7 +6,7 @@
 
 # 所需套件
 - spotipy 需到[Github Repository](https://github.com/plamere/spotipy)更新client.py
-- gTTs
+- gTTs //用Bing TTS替代
 - Speech Recognition
 - PyAudio
 - Pydub
