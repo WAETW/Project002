@@ -9,6 +9,7 @@
 - gTTs
 - Speech Recognition
 - PyAudio
+- Pydub
 - pygame
 - Newsapi-python
 - googletrans
