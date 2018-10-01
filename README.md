@@ -17,7 +17,18 @@
 - BeautifulSoup
 - json
 - ffmpeg 
+- pulseaudio-equalize
+
+# ffmpeg
+- Linux以下列方式進行安裝
 - To install libav:        apt-get install libav-tools 
 - To install ffmpeg:       apt-get install ffmpeg
-- 透過安裝pulseaudio-equalizer使撥放音質正常
-sudo apt-get install pulseaudio-equalizer
+# goopglestrans
+- 因為API進行過改動，所以透過下列指示重新安裝
+- pip uninstall googletrans
+- git clone https://github.com/BoseCorp/py-googletrans.git
+- cd ./py-googletrans && python setup.py install
+# pulseaudio-equalizer
+- pulseaudio-equalizer
+- 透過安裝pulseaudio-equalizer使wav播放音質正常
+- sudo apt-get install pulseaudio-equalizer
