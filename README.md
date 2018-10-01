@@ -25,7 +25,7 @@
 - To install ffmpeg:       apt-get install ffmpeg
 # goopglestrans
 - 因為API進行過改動，所以透過下列指示重新安裝
-- pip uninstall googletrans
+- pip uninstall googletrans (已安裝過googletrans才需要執行)
 - git clone https://github.com/BoseCorp/py-googletrans.git
 - cd ./py-googletrans && python setup.py install
 # pulseaudio-equalizer
