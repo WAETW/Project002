@@ -35,9 +35,8 @@ def weather_current():
     item = data['item']
     temp = item['condition']['temp']
 
-    weather = '溫度：' + temp + '°C' + ' 濕度：' + humidity + '% 天氣狀況：' + item['condition']['text']
-    print(weather)
-    TTS(weather,'中文')
+    print('溫度：' + temp + '°C' + ' 濕度：' + humidity + '% 天氣狀況：' + item['condition']['text'])
+    TTS('溫度：' + temp + '°C' + ' 濕度：' + humidity + '% 天氣狀況：' + item['condition']['text'],'中文')
 
 def weather_forecast():
     city = speech("說出想要查詢的城市",3)
