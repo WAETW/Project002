@@ -22,7 +22,7 @@
 - Linux以下列方式進行安裝
 - To install libav:        apt-get install libav-tools 
 - To install ffmpeg:       apt-get install ffmpeg
-## goopglestrans
+## googlestrans
 - 因為API進行過改動，所以透過下列指示重新安裝
 - pip uninstall googletrans (已安裝過googletrans才需要執行)
 - git clone https://github.com/BoseCorp/py-googletrans.git
