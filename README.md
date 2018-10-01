@@ -21,3 +21,6 @@
         apt-get install libav-tools 
    To install ffmpeg:
        apt-get install ffmpeg
+
+透過安裝pulseaudio-equalizer使撥放音質正常
+sudo apt-get install pulseaudio-equalizer
