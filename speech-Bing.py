@@ -1,6 +1,4 @@
 import speech_recognition as sr
-#from Speak import speak
-#import time
 def speech(title,duration):
     r=sr.Recognizer()
     with sr.Microphone() as source:
@@ -15,6 +13,4 @@ def speech(title,duration):
         except sr.UnboundLocalError:
             recognize = "無法辨識!"
     return recognize
-
-text = speech("嗨!",5)
 

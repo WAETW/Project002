@@ -2,7 +2,7 @@ import requests
 import json
 import time
 import datetime
-from speech_Bing import speech
+import dateutil.parser
 from BingTTS import TTS
 
 #set woeid
@@ -25,8 +25,7 @@ woeid = dict(臺北='2306179',
 臺東='2306190')
 
 
-def weather_current():
-    city = speech("說出想要查詢的城市" ,5)
+def weather_current(city):
     #load weather's json file
     res = requests.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D' + woeid.get(city) + '%20and%20u%3D%22c%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
     data = json.loads(res.text)
@@ -42,19 +41,19 @@ def weather_current():
     print('溫度：' + temp + '°C' + ' 濕度：' + humidity + '% 天氣狀況：' + item['condition']['text'])
     TTS('溫度：' + temp + '°C' + ' 濕度：' + humidity + '% 天氣狀況：' + item['condition']['text'],'中文')
 
-def weather_forecast():
-    city = speech("說出想要查詢的城市",5)
-
+def weather_forecast(date,city):
+    #處理dialogflow的Timestamp 
+    json_to_date = dateutil.parser.parse(date, ignoretz=True).strftime("%d %b %Y")
+    print(json_to_date)
+    
     #load weather's json file
     res = requests.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D' + woeid.get(city) + '%20and%20u%3D%22c%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')# + woeid.get(city))
     data = json.loads(res.text)
     forecast = data['query']['results']['channel']['item']['forecast']
 
-    #load timestamp
-    timestamp = datetime.datetime(2018,10,2)
-    timestamp = timestamp.strftime("%d %b %Y")
     #print results
     for i in range(len(forecast)) :
-        if timestamp == forecast[i]['date']:
+        if json_to_date == forecast[i]['date']:
             print('氣溫：' + forecast[i]['high'] + '°C~' + forecast[i]['low'] + '°C 天氣狀況：' + forecast[i]['text'])
             TTS('氣溫：' + forecast[i]['high'] + '°C~' + forecast[i]['low'] + '°C 天氣狀況：' + forecast[i]['text'],'中文')
+

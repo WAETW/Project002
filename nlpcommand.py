@@ -1,11 +1,12 @@
 import dialogflow
-from weather import getweather
+from weather import *
 from News import *
 from spotify_playback_control import spotifycontrol
 from Speak import speak 
 
 
 def detect_intent_texts(input):
+    print(input)
     project_id = "newagent-7ae55"
     session_id = "1"
     language_code = "zh-TW"
@@ -23,7 +24,12 @@ def detect_intent_texts(input):
             print(action)
             if action == "weather-search":
                 location = format(response.query_result.parameters['Taiwan-city'])
-                getweather(location)
+                date = format(response.query_result.parameters['date'])
+                print(date)
+                if date == "":
+                    weather_current(location)
+                else:
+                    weather_forecast(date,location)
             elif action == "music-play":
                 music_action = format(response.query_result.parameters['music-action'])
                 music_category= format(response.query_result.parameters['music-category'])
@@ -43,8 +49,11 @@ def detect_intent_texts(input):
                 new_category = format(response.query_result.parameters['news-category'])
                 if new_category == "頭條":
                     post("頭條")
+                else:
+                    print("我不懂")
             elif action == "input.unknown":
                 speak("我不懂","zh-tw")
         action_detection(format(response.query_result.action))
+
         
 
