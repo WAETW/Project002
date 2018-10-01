@@ -25,21 +25,24 @@ woeid = dict(臺北='2306179',
 
 
 def weather_current():
-    city = speech("說出想要查詢的城市" ,3)
+    city = speech("說出想要查詢的城市" ,5)
     #load weather's json file
     res = requests.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D' + woeid.get(city) + '%20and%20u%3D%22c%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
     data = json.loads(res.text)
 
     data = data['query']['results']['channel']
 
+    atmosphere = data['atmosphere']
+    humidity = atmosphere['humidity']
+
     item = data['item']
     temp = item['condition']['temp']
-
+    #print results
     print('溫度：' + temp + '°C' + ' 濕度：' + humidity + '% 天氣狀況：' + item['condition']['text'])
     TTS('溫度：' + temp + '°C' + ' 濕度：' + humidity + '% 天氣狀況：' + item['condition']['text'],'中文')
 
 def weather_forecast():
-    city = speech("說出想要查詢的城市",3)
+    city = speech("說出想要查詢的城市",5)
 
     #load weather's json file
     res = requests.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D' + woeid.get(city) + '%20and%20u%3D%22c%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')# + woeid.get(city))
