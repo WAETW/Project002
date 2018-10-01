@@ -5,6 +5,7 @@ import datetime
 from speech_Bing import speech
 from BingTTS import TTS
 
+#set woeid
 woeid = dict(臺北='2306179',
 新北='20070569',
 基隆='2306188',
