@@ -16,7 +16,7 @@
 - requests
 - BeautifulSoup
 - json
-- ffmpeg
+- ffmpeg /n
    To install libav:
         apt-get install libav-tools 
    To install ffmpeg:
