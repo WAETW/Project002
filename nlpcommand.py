@@ -45,5 +45,6 @@ def detect_intent_texts(input):
                     post("頭條")
             elif action == "input.unknown":
                 speak("我不懂","zh-tw")
+        action_detection(format(response.query_result.action))
         
 
