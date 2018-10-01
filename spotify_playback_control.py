@@ -54,7 +54,10 @@ def searchartist(q):
 
 #繼續播放
 def resume():
-    sp.start_playback(deviceID, context_uri=None, uris=None, offset=None)
+    track = sp.current_user_playing_track()
+    status = track['is_playing']
+    if status == False:
+        sp.start_playback(deviceID, context_uri=None, uris=None, offset=None)
 
 #控制
 def spotifycontrol(seq,search):
@@ -62,7 +65,10 @@ def spotifycontrol(seq,search):
         #speak(nowplaying(),zh-tw)
         print(nowplaying())
     elif seq == "暫停":
-        sp.pause_playback(deviceID)
+        track = sp.current_user_playing_track()
+        status = track['is_playing']
+        if status == True:
+            sp.pause_playback(deviceID)
     elif seq == "下一首":
         sp.next_track(deviceID)
     elif seq == "上一首":
@@ -79,3 +85,6 @@ def spotifycontrol(seq,search):
         sp.volume(set_volume,deviceID)
     elif seq == "播放":
         resume()
+    else:
+        print("我不懂")
+

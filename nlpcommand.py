@@ -24,6 +24,7 @@ def detect_intent_texts(input):
         def action_detection(action):
             print(action)
             if action == "weather-search":
+                spotifycontrol("暫停","")
                 location = format(response.query_result.parameters['Taiwan-city'])
                 date = format(response.query_result.parameters['date'])
                 print(date)
@@ -46,6 +47,7 @@ def detect_intent_texts(input):
                 else:
                     spotifycontrol(music_action,music_category)
             elif action == "news-broadcast":
+                spotifycontrol("暫停","")
                 new_action = format(response.query_result.parameters['news-action'])
                 new_category = format(response.query_result.parameters['news-category'])
                 if new_category == "頭條":
