@@ -10,7 +10,6 @@ username = "呂晟暐"
 try:
     token = util.prompt_for_user_token(username,scope)
 except (AttributeError, JSONDecodeError):
-    #os.remove(f".cache-{username}")
     token = util.prompt_for_user_token(username,scope)
 
 sp = spotipy.Spotify(auth=token)
@@ -68,12 +67,6 @@ def spotifycontrol(seq,search):
         sp.next_track(deviceID)
     elif seq == "上一首":
         sp.previous_track(deviceID)
-    elif seq == "搜尋歌曲":
-        search = speech("輸入歌名:",5,1)
-        if search == "無法辨識!":
-            print("無法辨識!")
-        else:
-            searchsong(search)
     elif seq == "搜尋播放清單":
         searchplaylist(search)
     elif seq == "搜尋歌手":
