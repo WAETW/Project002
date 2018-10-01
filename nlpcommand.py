@@ -2,8 +2,9 @@ import dialogflow
 from weather import *
 from News import *
 from spotify_playback_control import spotifycontrol
-from Speak import speak 
-
+from Speak import speak
+from translate import *
+from BingTTS import *
 
 def detect_intent_texts(input):
     print(input)
@@ -51,9 +52,10 @@ def detect_intent_texts(input):
                     post("頭條")
                 else:
                     print("我不懂")
+            elif action == "translater"
+                translate_action = format(response.query_result.parameters['translate-action'])
+                translate_language = format(response.query_result.parameters['translate-language1'])
+                translate(translate_language)
             elif action == "input.unknown":
                 speak("我不懂","zh-tw")
         action_detection(format(response.query_result.action))
-
-        
-
