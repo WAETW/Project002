@@ -14,8 +14,8 @@ def translate(l):
         l = speech('要翻譯成什麼語言',2,2)
 
     TTS('我正在聽','中文')
-    #say = speech('我正在聽',2,2)
-    say = '你好嗎'
+    say = speech('我正在聽',2,2)
+    #say = '你好嗎'
     result = translate.translate(say ,dest=lan.get(l))
     #result = translate.translate(say ,dest=lan.get('日文'))
     #result = translate.translate('我想吃晚餐',dest=lan.get('日文'))
