@@ -4,13 +4,13 @@ from pydub import AudioSegment
 import pyaudio
 
 def wavplay(sound):
-    print(sound)
+    #print(sound)
     #mp3 to wav
     #AudioSegment.from_mp3(sound).export(("{}.wav".format(fp.name)), format="wav")
     #play wav
     chunk=1024
     file =(sound)
-    print(file)
+    #print(file)
     f = wave.open(file,"rb")
     p = pyaudio.PyAudio()
     stream = p.open(format = p.get_format_from_width(f.getsampwidth()),
