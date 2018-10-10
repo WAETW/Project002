@@ -3,6 +3,7 @@ from newsapi import NewsApiClient
 #import time
 #import speech_recognition
 from BingTTS import TTS
+from speech import speech
 
 api = NewsApiClient(api_key='04739a6cbc43442b9c783f71b6850932')
 
@@ -35,7 +36,7 @@ def post(key):
     if key=='頭條':
         all_news(headlines())
     elif key=='關鍵字':
-        all_news(articles(keyword()))
+        all_news(articles(speech('請說出要搜尋的關鍵字',2,1)))
 
 ##def test():
 ##    for i in range(0,1):
