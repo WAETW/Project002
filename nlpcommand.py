@@ -52,6 +52,8 @@ def detect_intent_texts(input):
                 new_category = format(response.query_result.parameters['news-category'])
                 if new_category == "頭條":
                     post("頭條")
+                elif new_category == "關鍵字" or new_action == "搜尋"
+                    post("關鍵字")
                 else:
                     print("我不懂")
             elif action == "translater"
