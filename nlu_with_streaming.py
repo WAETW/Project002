@@ -1,9 +1,7 @@
-from weather import *
+ffrom weather import *
 from News import *
 from spotify_playback_control import spotifycontrol
-from translate import *
 from BingTTS import *
-
 def detect_intent_stream():
     import dialogflow_v2 as dialogflow
     import pyaudio
@@ -98,8 +96,14 @@ def action_detection(response):
         translate_action = format(response.query_result.parameters['translate-action'])
         translate_language = format(response.query_result.parameters['translate-language1'])
         translate(translate_language)
+    elif action == "translate.text":
+        language_to = format(response.query_result.parameters['lang-to'])
+        text = format(response.query_result.parameters['text'])
+        translate(text,language_to)
     elif action == "input.unknown":
-        speak("我不懂","zh-tw")
-
-response = detect_intent_stream()
-action_detection(response)
+        TTS("我不懂","中文")
+def main():
+    response = detect_intent_stream()
+    action_detection(response)
+if __name__ == "__main__":
+    main()
