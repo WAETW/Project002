@@ -12,7 +12,7 @@ def speech(title,duration,i):
         time.sleep(i)
         audio=r.listen(source)
         try:
-            recognize = r.recognize_google(audio, language="zh-TW")
+            recognize = r.recognize_bing(audio,key="ca9c8dea98a74ef0bf98b5519a5010f3",language="zh-TW")
             print(recognize)
         except sr.UnknownValueError:
             recognize = "無法辨識!"
