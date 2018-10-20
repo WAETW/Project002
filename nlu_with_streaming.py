@@ -1,7 +1,8 @@
-ffrom weather import *
+from weather import *
 from News import *
 from spotify_playback_control import spotifycontrol
 from BingTTS import *
+'''開啟麥克風並透過Dialogflow內建的語音辨識功能來辨識'''
 def detect_intent_stream():
     import dialogflow_v2 as dialogflow
     import pyaudio
@@ -60,6 +61,7 @@ def detect_intent_stream():
     print('Fulfillment text: {}\n'.format(
         query_result.fulfillment_text))
     return response
+'''處理Agent所回傳的Response'''
 def action_detection(response):
     action = response.query_result.action
     print(action)
