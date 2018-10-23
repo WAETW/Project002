@@ -17,7 +17,7 @@
 - json
 - ffmpeg
 - pulseaudio-equalize
-安裝
+### 安裝
 ```shell
 cd Script
 sh install_package.sh
