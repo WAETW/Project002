@@ -1,9 +1,9 @@
 from weather import *
 from News import *
 from spotify_playback_control import spotifycontrol
-from translate import *
 from BingTTS import *
-
+from translate import *
+'''開啟麥克風並透過Dialogflow內建的語音辨識功能來辨識'''
 def detect_intent_stream():
     import dialogflow_v2 as dialogflow
     import pyaudio
@@ -12,7 +12,7 @@ def detect_intent_stream():
     language_code = 'zh-TW'
     session_client = dialogflow.SessionsClient()
     audio_encoding = dialogflow.enums.AudioEncoding.AUDIO_ENCODING_LINEAR_16
-    sample_rate_hertz = 16000
+    sample_rate_hertz = 44000
 
     session_path = session_client.session_path(project_id, session_id)
     print('Session path: {}\n'.format(session_path))
@@ -26,7 +26,7 @@ def detect_intent_stream():
         audio = pyaudio.PyAudio()
         FORMAT = pyaudio.paInt16
         CHANNELS = 1
-        RATE = 16000
+        RATE = 44000
         CHUNK = 4096
         stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input_device_index = 1,input=True, frames_per_buffer=CHUNK)
         print("嗨")
@@ -62,6 +62,7 @@ def detect_intent_stream():
     print('Fulfillment text: {}\n'.format(
         query_result.fulfillment_text))
     return response
+'''處理Agent所回傳的Response'''
 def action_detection(response):
     action = response.query_result.action
     print(action)
@@ -98,8 +99,14 @@ def action_detection(response):
         translate_action = format(response.query_result.parameters['translate-action'])
         translate_language = format(response.query_result.parameters['translate-language1'])
         translate(translate_language)
+    elif action == "translate.text":
+        language_to = format(response.query_result.parameters['translate-language'])
+        text = format(response.query_result.parameters['text'])
+        translate(text,language_to)
     elif action == "input.unknown":
-        speak("我不懂","zh-tw")
-
-response = detect_intent_stream()
-action_detection(response)
+        TTS("我不懂","中文")
+'''def main():
+    response = detect_intent_stream()
+    action_detection(response)
+if __name__ == "__main__":
+    main()'''
