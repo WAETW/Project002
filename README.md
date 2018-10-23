@@ -17,14 +17,19 @@
 - json
 - ffmpeg
 - pulseaudio-equalize
+安裝
+```shell
+cd Script
+sh install_package.sh
+```
 ### ffmpeg
 Linux以下列方式進行安裝
 To install libav:
-```        
+``` shell       
 ~$ apt-get install libav-tools
 ```
 To install ffmpeg:       
-```
+```shell
 ~$ apt-get install ffmpeg
 ```
 ### googlestrans
@@ -36,6 +41,6 @@ To install ffmpeg:
 ```
 ### pulseaudio-equalizer
 透過安裝pulseaudio-equalizer使wav播放音質正常
-```
+```shell
 ~$ sudo apt-get install pulseaudio-equalizer
 ```
