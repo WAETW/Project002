@@ -12,7 +12,7 @@ from BingTTS import TTS
 from speech_Bing import speech
 
 
-def read():
+def read_mail():
 	SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
 	store = file.Storage('storage.json')
 	creds = store.get()
@@ -86,5 +86,7 @@ def read():
 				pass
 	except(KeyError):
 		pass
-	
-read()
+def main():
+	read_mail()
+if __name__ == "__main__":
+	main()
