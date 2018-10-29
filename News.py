@@ -18,7 +18,7 @@ def articles(word):
 def all_news(last):
     #ticks=time.time()
     #print(ticks)
-    for i in range(0,3):
+    for i in range(0,1):
         #print(top_headlines['articles'][i]['title'])
         #print(top_headlines['articles'][i]['description'])
         if last['articles'][i]['description'] == None:
