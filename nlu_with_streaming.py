@@ -40,7 +40,7 @@ def detect_intent_stream():
                 input_audio=chunk,single_utterance = True)
         stream.stop_stream()
         stream.close()
-        p.terminate()
+        audio.terminate()
 
     audio_config = dialogflow.types.InputAudioConfig(
         audio_encoding=audio_encoding, language_code=language_code,
