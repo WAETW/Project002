@@ -17,8 +17,8 @@ def interrupt_callback():
     return interrupted
 
 def detected():
-    get_unread()
     detector.terminate()
+    get_unread()
     snowboydecoder.play_audio_file("咕嚕靈波.wav")
     response = detect_intent_stream()
     action_detection(response)
