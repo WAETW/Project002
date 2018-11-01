@@ -3,12 +3,14 @@ from News import *
 from spotify_playback_control import spotifycontrol
 from BingTTS import *
 from translate import *
+import random
 '''開啟麥克風並透過Dialogflow內建的語音辨識功能來辨識'''
 def detect_intent_stream():
+    session = random.randint(0,10)
     import dialogflow_v2 as dialogflow
     import pyaudio
     project_id = 'newagent-7ae55'
-    session_id = '123'
+    session_id = str(session)
     language_code = 'zh-TW'
     session_client = dialogflow.SessionsClient()
     audio_encoding = dialogflow.enums.AudioEncoding.AUDIO_ENCODING_LINEAR_16
@@ -38,7 +40,7 @@ def detect_intent_stream():
                 input_audio=chunk,single_utterance = True)
         stream.stop_stream()
         stream.close()
-        p.terminate()
+        audio.terminate()
 
     audio_config = dialogflow.types.InputAudioConfig(
         audio_encoding=audio_encoding, language_code=language_code,
