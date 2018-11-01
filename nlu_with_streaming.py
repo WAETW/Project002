@@ -105,6 +105,8 @@ def action_detection(response):
         language_to = format(response.query_result.parameters['translate-language'])
         text = format(response.query_result.parameters['text'])
         translate(text,language_to)
+    elif action == "readmail":
+        read()
     elif action == "input.unknown":
         TTS("我不懂","中文")
 '''def main():
