@@ -104,9 +104,19 @@ def action_detection(response):
     elif action == "translate.text":
         language_to = format(response.query_result.parameters['translate-language'])
         text = format(response.query_result.parameters['text'])
-        translate(text,language_to)
+        if(language_to == '' or text == ''):
+            TTS("我不懂","中文")
+        else:
+            translate(text,language_to)
     elif action == "input.unknown":
-        TTS("我不懂","中文")
+        #TTS("我不懂","中文")
+        translate("我不懂","中文")
+        #wavplay("咕嚕靈波.wav")
+        #print("FUCK")         
+    else:
+        #TTS("我不懂","中文")
+        translate("我不懂","中文")
+
 '''def main():
     response = detect_intent_stream()
     action_detection(response)
