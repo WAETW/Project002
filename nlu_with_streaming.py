@@ -108,13 +108,13 @@ def action_detection(response):
             TTS("我不懂","中文")
         else:
             translate(text,language_to)
+        translate(text,language_to)
+    elif action == "readmail":
+        read()
+
     elif action == "input.unknown":
-        #TTS("我不懂","中文")
-        translate("我不懂","中文")
-        #wavplay("咕嚕靈波.wav")
-        #print("FUCK")         
+        translate("我不懂","中文")       
     else:
-        #TTS("我不懂","中文")
         translate("我不懂","中文")
 
 '''def main():

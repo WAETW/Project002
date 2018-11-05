@@ -2,8 +2,10 @@ import snowboydecoder
 import signal
 from nlu_with_streaming import *
 from wav import *
-interrupted = False
+import sys
+from read_gmail import *
 
+interrupted = False
 
 def signal_handler(signal, frame):
     global interrupted
@@ -16,11 +18,11 @@ def interrupt_callback():
 
 def detected():
     detector.terminate()
+    get_unread()
     snowboydecoder.play_audio_file("咕嚕靈波.wav")
     response = detect_intent_stream()
     action_detection(response)
     detector.start(detected_callback=detected,interrupt_check=interrupt_callback,sleep_time=0.03)
-
 
 
 model = "小白.pmdl"
