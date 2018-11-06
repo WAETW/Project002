@@ -9,7 +9,6 @@ import dateutil.parser as parser
 from datetime import datetime
 import datetime
 from BingTTS import TTS
-#from speech_Bing import speech
 import sched
 
 SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
@@ -31,6 +30,8 @@ mssg_list = unread_msgs['messages']
 def get_unread():
 	try:
 		print ("未讀信件數: ", str(len(mssg_list)))
+		unread_msgs_sum = "你有"+str(len(mssg_list))+"封未讀信件"
+		TTS(unread_msgs_sum,'中文')
 	except (KeyError):
 		print("沒有新信件")
 		pass
@@ -67,7 +68,7 @@ def read():
 					print('主旨: '+temp_dict['主旨'])
 				else:
 					pass
-
+			 
 			temp_dict['信件預覽'] = message['snippet']
 			TTS('日期'+temp_dict['日期']+'發送人'+temp_dict['發送人']+'主旨'+temp_dict['主旨'],'中文')
 			#read = speech("是否繼續閱讀?",5)

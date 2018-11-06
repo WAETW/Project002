@@ -50,24 +50,21 @@ def detect_intent_stream():
     responses = session_client.streaming_detect_intent(requests)
 
     print('=' * 20)
-    for response in responses:
-        '''print('Intermediate transcript: "{}".'.format(
+    '''for response in responses:
+        print('Intermediate transcript: "{}".'.format(
                 response.recognition_result.transcript))'''
 
     query_result = response.query_result
 
     print('=' * 20)
-    print('Query text: {}'.format(query_result.query_text))
-    print('Detected intent: {} (confidence: {})\n'.format(
+    print('語音辨識結果: {}'.format(query_result.query_text))
+    print('動作: {} (confidence: {})\n'.format(
         query_result.intent.display_name,
         query_result.intent_detection_confidence))
-    print('Fulfillment text: {}\n'.format(
-        query_result.fulfillment_text))
     return response
 '''處理Agent所回傳的Response'''
 def action_detection(response):
     action = response.query_result.action
-    print(action)
     if action == "weather-search":
         location = format(response.query_result.parameters['Taiwan-city'])
         date = format(response.query_result.parameters['date'])
@@ -94,13 +91,12 @@ def action_detection(response):
         new_action = format(response.query_result.parameters['news-action'])
         new_category = format(response.query_result.parameters['news-category'])
         if new_category == "頭條":
-            post("頭條")
+            all_news(headlines())
         else:
             print("我不懂")
-    elif action == "translater":
-        translate_action = format(response.query_result.parameters['translate-action'])
-        translate_language = format(response.query_result.parameters['translate-language1'])
-        translate(translate_language)
+    elif action == "news-keyword":
+        news_text = format(response.query_result.parameters['any'])
+        all_news(news_text)
     elif action == "translate.text":
         language_to = format(response.query_result.parameters['translate-language'])
         text = format(response.query_result.parameters['text'])
@@ -110,15 +106,13 @@ def action_detection(response):
             translate(text,language_to)
         translate(text,language_to)
     elif action == "readmail":
-        read()
-
+        read_gmail()
     elif action == "input.unknown":
         translate("我不懂","中文")       
     else:
         translate("我不懂","中文")
-
-'''def main():
+def main():
     response = detect_intent_stream()
     action_detection(response)
 if __name__ == "__main__":
-    main()'''
+    main()
