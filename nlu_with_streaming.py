@@ -96,7 +96,10 @@ def action_detection(response):
             print("我不懂")
     elif action == "news-keyword":
         news_text = format(response.query_result.parameters['any'])
-        all_news(news_text)
+        if news_text == "":
+            TTS("我不懂","中文")
+        else:
+            all_news(articles(news_text))
     elif action == "translate.text":
         language_to = format(response.query_result.parameters['translate-language'])
         text = format(response.query_result.parameters['text'])
