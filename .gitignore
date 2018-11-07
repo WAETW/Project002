@@ -107,5 +107,6 @@ NewAgent-d6e66faa6335.json
 
 #spotify api產生的cache
 .cache-呂晟暐
-
+#忽略gmail認證JSON檔
+client_secret.json
 

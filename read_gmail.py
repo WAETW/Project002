@@ -25,7 +25,6 @@ label_id_two = 'UNREAD'
 
 unread_msgs = GMAIL.users().messages().list(userId='me',labelIds=[label_id_one, label_id_two]).execute()
 mssg_list = unread_msgs['messages']
-#logging.getLogger('googleapicliet.discovery_cache').setLevel(logging.ERROR)
 
 def get_unread():
 	try:
@@ -36,7 +35,7 @@ def get_unread():
 		print("沒有新信件")
 		pass
 
-def read():
+def read_gmail():
 	try:
 		for mssg in mssg_list:
 			temp_dict = { }
@@ -44,7 +43,6 @@ def read():
 			message = GMAIL.users().messages().get(userId=user_id, id=m_id).execute()
 			payld = message['payload']
 			headr = payld['headers']
-
 			for one in headr:
 				if one ['name'] == 'Date':
 					msg_date = one ['value']
@@ -71,6 +69,7 @@ def read():
 			 
 			temp_dict['信件預覽'] = message['snippet']
 			TTS('日期'+temp_dict['日期']+'發送人'+temp_dict['發送人']+'主旨'+temp_dict['主旨'],'中文')
+			GMAIL.users().messages().modify(userId=user_id, id=m_id,body={ 'removeLabelIds': ['UNREAD']}).execute()
 			#read = speech("是否繼續閱讀?",5)
 			#if read == '是':
 				#print (temp_dict['信件預覽'])
@@ -93,6 +92,7 @@ def read():
 
 def main():
 	get_unread()
-	read()
+	read_gmail()
 if __name__ == "__main__":
 	main()
+
