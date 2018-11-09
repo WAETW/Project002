@@ -20,7 +20,8 @@ if not creds or creds.invalid:
 GMAIL = discovery.build('gmail', 'v1', http=creds.authorize(Http()),cache_discovery=False)
 
 user_id =  'me'
-label_id_one = 'INBOX'
+#label_id_one = 'INBOX'
+label_id_one = 'IMPORTANT'
 label_id_two = 'UNREAD'
 
 unread_msgs = GMAIL.users().messages().list(userId='me',labelIds=[label_id_one, label_id_two]).execute()
