@@ -3,6 +3,7 @@ from News import *
 from spotify_playback_control import spotifycontrol
 from BingTTS import *
 from translate import *
+from read_gmail import *
 import random
 '''開啟麥克風並透過Dialogflow內建的語音辨識功能來辨識'''
 def detect_intent_stream():
@@ -50,9 +51,9 @@ def detect_intent_stream():
     responses = session_client.streaming_detect_intent(requests)
 
     print('=' * 20)
-    '''for response in responses:
+    for response in responses:
         print('Intermediate transcript: "{}".'.format(
-                response.recognition_result.transcript))'''
+                response.recognition_result.transcript))
 
     query_result = response.query_result
 
@@ -66,6 +67,7 @@ def detect_intent_stream():
 def action_detection(response):
     action = response.query_result.action
     if action == "weather-search":
+        spotifycontrol('暫停','')
         location = format(response.query_result.parameters['Taiwan-city'])
         date = format(response.query_result.parameters['date'])
         print(date)
@@ -88,6 +90,7 @@ def action_detection(response):
         else:
             spotifycontrol(music_action,music_category)
     elif action == "news-broadcast":
+        spotifycontrol('暫停','')
         new_action = format(response.query_result.parameters['news-action'])
         new_category = format(response.query_result.parameters['news-category'])
         if new_category == "頭條":
@@ -95,12 +98,14 @@ def action_detection(response):
         else:
             print("我不懂")
     elif action == "news-keyword":
+        spotifycontrol('暫停','')
         news_text = format(response.query_result.parameters['any'])
         if news_text == "":
             TTS("我不懂","中文")
         else:
             all_news(articles(news_text))
     elif action == "translate.text":
+        spotifycontrol('暫停','')
         language_to = format(response.query_result.parameters['translate-language'])
         text = format(response.query_result.parameters['text'])
         if(language_to == '' or text == ''):
@@ -109,10 +114,13 @@ def action_detection(response):
             translate(text,language_to)
         translate(text,language_to)
     elif action == "readmail":
+        spotifycontrol('暫停','')
         read_gmail()
     elif action == "input.unknown":
+        spotifycontrol('暫停','')
         translate("我不懂","中文")       
     else:
+        spotifycontrol('暫停','')
         translate("我不懂","中文")
 def main():
     response = detect_intent_stream()

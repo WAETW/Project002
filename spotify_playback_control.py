@@ -2,7 +2,6 @@ import spotipy
 import os
 import spotipy.util as util
 from json.decoder import JSONDecodeError
-from speech import speech
 
 scope = 'user-read-private user-read-playback-state user-modify-playback-state'
 username = "呂晟暐"
@@ -62,7 +61,6 @@ def resume():
 #控制
 def spotifycontrol(seq,search):
     if seq == "目前播放":
-        #speak(nowplaying(),zh-tw)
         print(nowplaying())
     elif seq == "暫停":
         track = sp.current_user_playing_track()
