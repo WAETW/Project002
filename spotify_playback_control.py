@@ -12,14 +12,15 @@ except (AttributeError, JSONDecodeError):
     token = util.prompt_for_user_token(username,scope)
 
 sp = spotipy.Spotify(auth=token)
-devices = sp.devices()
+auth_tag = False
 try:
+    devices = sp.devices()
     deviceID = devices['devices'][0]['id']
+    current_volume = devices['devices'][0]['volume_percent']
+    auth_tag = True
 except IndexError:
     print('= =')
-    os._exit(0)
-deviceName = devices['devices'][0]['name']
-current_volume = devices['devices'][0]['volume_percent']
+    auth_tag = False
 #播放狀態
 def playing_status():
     track = sp.current_user_playing_track()
@@ -64,6 +65,9 @@ def resume():
 
 #控制
 def spotifycontrol(seq,search):
+    if auth_tag== False:
+        print('==')
+        return    
     if seq == "目前播放":
         #speak(nowplaying(),zh-tw)
         print(nowplaying())
@@ -91,6 +95,6 @@ def spotifycontrol(seq,search):
     else:
         print("我不懂")
 def main():
-    spotifycontrol('播放','')
+    spotifycontrol('暫停','')
 if __name__ == '__main__':
     main()
