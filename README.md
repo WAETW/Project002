@@ -16,7 +16,7 @@
 - dualogflow
 - json
 - ffmpeg
-- pulseaudio-equalize
+
 ### 安裝
 ```shell
 cd Script
@@ -43,8 +43,4 @@ To install ffmpeg:
 ~$ git clone https://github.com/BoseCorp/py-googletrans.git
 ~$ cd ./py-googletrans && python setup.py install
 ```
-### pulseaudio-equalizer
-透過安裝pulseaudio-equalizer使wav播放音質正常
-```shell
-~$ sudo apt-get install pulseaudio-equalizer
-```
+
