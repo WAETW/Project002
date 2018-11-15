@@ -32,6 +32,10 @@ To install ffmpeg:
 ```shell
 ~$ apt-get install ffmpeg
 ```
+### pyaudio
+```shell
+~$ sudo apt-get install python3-pyaudio 
+```
 ### googlestrans
 - 因為API進行過改動，所以透過下列指示重新安裝
 ```shell
