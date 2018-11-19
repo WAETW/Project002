@@ -7,6 +7,7 @@ from read_gmail import *
 import random
 '''開啟麥克風並透過Dialogflow內建的語音辨識功能來辨識'''
 def detect_intent_stream():
+    global audio,stream
     session = random.randint(0,10)
     import dialogflow_v2 as dialogflow
     import pyaudio
@@ -21,6 +22,7 @@ def detect_intent_stream():
     print('Session path: {}\n'.format(session_path))
 
     def request_generator(audio_config):
+        global audio,stream
         query_input = dialogflow.types.QueryInput(audio_config=audio_config)
 
         yield dialogflow.types.StreamingDetectIntentRequest(
@@ -33,6 +35,8 @@ def detect_intent_stream():
         CHUNK = 4096
         stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input_device_index = 1,input=True, frames_per_buffer=CHUNK)
         print("嗨")
+        
+          
         while True:
             chunk = stream.read(CHUNK,exception_on_overflow = False)
             if not chunk:
@@ -42,14 +46,19 @@ def detect_intent_stream():
         stream.stop_stream()
         stream.close()
         audio.terminate()
-
+    def stop_now():
+        global audio,stream
+        stream.stop_stream()
+        stream.close()
+        audio.terminate()
+        #print('7777')
     audio_config = dialogflow.types.InputAudioConfig(
         audio_encoding=audio_encoding, language_code=language_code,
         sample_rate_hertz=sample_rate_hertz)
 
     requests = request_generator(audio_config)
     responses = session_client.streaming_detect_intent(requests)
-
+        
     print('=' * 20)
     for response in responses:
         print('Intermediate transcript: "{}".'.format(
@@ -62,6 +71,7 @@ def detect_intent_stream():
     print('動作: {} (confidence: {})\n'.format(
         query_result.intent.display_name,
         query_result.intent_detection_confidence))
+    stop_now()
     return response
 '''處理Agent所回傳的Response'''
 def action_detection(response):
@@ -120,7 +130,6 @@ def action_detection(response):
             TTS("我不懂","中文")
         else:
             translate(text,language_to)
-        translate(text,language_to)
     elif action == "readmail":
         spotify_auth_check = spotifycontrol('暫停','')
         read_gmail()
