@@ -90,6 +90,7 @@ def read_gmail():
 			#elif important != '是':
 				#pass
 	except(KeyError):
+		TTS('沒有未讀信件','中文')
 		pass
 
 def main():
