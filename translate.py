@@ -30,5 +30,5 @@ lan = {
     '泰文':'th'
 }
 #translate(None)
-translate('你好嗎','日文')
+#translate('你好嗎','日文')
 #translate(speech('請選擇要翻譯的語言',2,3), speech('正在翻譯...',2,2))
