@@ -60,13 +60,21 @@ def TTS(sentence,la):
 language = {
     '中文' : 'zh-TW',
     '英文' : 'en-US',
-    '日文' : 'ja-JP'
+    '日文' : 'ja-JP',
+    '德文' : 'de-DE',
+    '法文' : 'fr-FR',
+    '韓文' : 'ko-KR',
+    '泰文' : 'th-TH'
 }
 #TTS聲音
 vo = {
     '中文' : 'Microsoft Server Speech Text to Speech Voice (zh-TW, Yating, Apollo)',
     '英文' : 'Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)',
-    '日文' : 'Microsoft Server Speech Text to Speech Voice (ja-JP, Ayumi, Apollo)'
+    '日文' : 'Microsoft Server Speech Text to Speech Voice (ja-JP, Ayumi, Apollo)',
+    '德文' : 'Microsoft Server Speech Text to Speech Voice (de-DE, Hedda)',
+    '法文' : 'Microsoft Server Speech Text to Speech Voice (fr-FR, Julie, Apollo)',
+    '韓文' : 'Microsoft Server Speech Text to Speech Voice (ko-KR, HeamiRUS)',
+    '泰文' : 'Microsoft Server Speech Text to Speech Voice (th-TH, Pattara)'
 }
 
 #TTS('気持ち悪い','日文')

@@ -19,7 +19,11 @@ def translate(input,language_to):
 lan = {
     '英文':'en',
     '中文':'zh-TW',
-    '日文':'ja'
+    '日文':'ja',
+    '德文':'de',
+    '法文':'fr',
+    '韓文':'ko',
+    '泰文':'th'
 }
 #translate(None)
 #translate('你好嗎','日文')
