@@ -112,7 +112,6 @@ def action_detection(response):
             TTS("我不懂","中文")
         else:
             translate(text,language_to)
-        translate(text,language_to)
     elif action == "readmail":
         spotifycontrol('暫停','')
         read_gmail()
