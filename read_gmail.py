@@ -24,11 +24,10 @@ user_id =  'me'
 label_id_one = 'IMPORTANT'
 label_id_two = 'UNREAD'
 
-unread_msgs = GMAIL.users().messages().list(userId='me',labelIds=[label_id_one, label_id_two]).execute()
-mssg_list = unread_msgs['messages']
-
 def get_unread():
 	try:
+		unread_msgs = GMAIL.users().messages().list(userId='me',labelIds=[label_id_one, label_id_two]).execute()
+		mssg_list = unread_msgs['messages']
 		print ("未讀信件數: ", str(len(mssg_list)))
 		unread_msgs_sum = "你有"+str(len(mssg_list))+"封未讀信件"
 		TTS(unread_msgs_sum,'中文')
@@ -38,6 +37,8 @@ def get_unread():
 
 def read_gmail():
 	try:
+		unread_msgs = GMAIL.users().messages().list(userId='me',labelIds=[label_id_one, label_id_two]).execute()
+		mssg_list = unread_msgs['messages']
 		for mssg in mssg_list:
 			temp_dict = { }
 			m_id = mssg['id']
