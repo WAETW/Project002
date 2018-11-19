@@ -67,7 +67,7 @@ def detect_intent_stream():
 def action_detection(response):
     action = response.query_result.action
     if action == "weather-search":
-        spotifycontrol('暫停','')
+        spotify_auth_check = spotifycontrol('暫停','')
         location = format(response.query_result.parameters['Taiwan-city'])
         date = format(response.query_result.parameters['date'])
         print(date)
@@ -82,15 +82,23 @@ def action_detection(response):
         if music_action == "播放":
             if music_category == "" and music_artist == "":
                 music_category_null = ""
-                spotifycontrol(music_action,music_category_null)
+                spotify_auth_check = spotifycontrol(music_action,music_category_null)
+                if spotify_auth_check == False:
+                   translate("未登入","中文") 
             elif music_artist == "":
-                spotifycontrol("搜尋播放清單",music_category)
+                spotify_auth_check = spotifycontrol("搜尋播放清單",music_category)
+                if spotify_auth_check == False:
+                   translate("未登入","中文")
             elif music_category == "":
-                spotifycontrol("搜尋歌手",music_artist)
+                spotify_auth_check = spotifycontrol("搜尋歌手",music_artist)
+                if spotify_auth_check == False:
+                   translate("未登入","中文")
         else:
-            spotifycontrol(music_action,music_category)
+            spotify_auth_check = spotifycontrol(music_action,music_category)
+            if spotify_auth_check == False:
+                   translate("未登入","中文")
     elif action == "news-broadcast":
-        spotifycontrol('暫停','')
+        spotify_auth_check = spotifycontrol('暫停','')
         new_action = format(response.query_result.parameters['news-action'])
         new_category = format(response.query_result.parameters['news-category'])
         if new_category == "頭條":
@@ -98,31 +106,33 @@ def action_detection(response):
         else:
             print("我不懂")
     elif action == "news-keyword":
-        spotifycontrol('暫停','')
+        spotify_auth_check = spotifycontrol('暫停','')
         news_text = format(response.query_result.parameters['any'])
         if news_text == "":
             TTS("我不懂","中文")
         else:
             all_news(articles(news_text))
     elif action == "translate.text":
-        spotifycontrol('暫停','')
+        spotify_auth_check = spotifycontrol('暫停','')
         language_to = format(response.query_result.parameters['translate-language'])
         text = format(response.query_result.parameters['text'])
         if(language_to == '' or text == ''):
             TTS("我不懂","中文")
         else:
             translate(text,language_to)
+        translate(text,language_to)
     elif action == "readmail":
-        spotifycontrol('暫停','')
+        spotify_auth_check = spotifycontrol('暫停','')
         read_gmail()
     elif action == "input.unknown":
-        spotifycontrol('暫停','')
+        spotify_auth_check = spotifycontrol('暫停','')
         translate("我不懂","中文")       
     else:
-        spotifycontrol('暫停','')
+        spotify_auth_check = spotifycontrol('暫停','')
         translate("我不懂","中文")
 def main():
     response = detect_intent_stream()
     action_detection(response)
 if __name__ == "__main__":
     main()
+
