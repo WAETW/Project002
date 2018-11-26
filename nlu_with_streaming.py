@@ -118,7 +118,8 @@ def action_detection(response):
     elif action == "news-keyword":
         spotify_auth_check = spotifycontrol('暫停','')
         news_text = format(response.query_result.parameters['any'])
-        if news_text == "":
+        news_news = format(response.query_result.parameters['news'])
+        if news_text == "" or news_news =="":
             TTS("我不懂","中文")
         else:
             all_news(articles(news_text))
