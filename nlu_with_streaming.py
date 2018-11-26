@@ -24,9 +24,9 @@ def detect_intent_stream():
     def request_generator(audio_config):
         global audio,stream
         query_input = dialogflow.types.QueryInput(audio_config=audio_config)
-
+        query_params = dialogflow.types.QueryParameters(reset_contexts=True)
         yield dialogflow.types.StreamingDetectIntentRequest(
-            session=session_path, query_input=query_input,single_utterance = True)
+            session=session_path, query_params=query_params,query_input=query_input,single_utterance = True)
 
         audio = pyaudio.PyAudio()
         FORMAT = pyaudio.paInt16

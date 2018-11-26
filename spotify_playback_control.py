@@ -20,7 +20,7 @@ def exception_handling():
             if devices['devices'][i]['name'] == 'test-1':
                 deviceID = devices['devices'][i]['id']
                 current_volume = devices['devices'][i]['volume_percent']
-                print(deviceID)
+                #print(deviceID)
                 return True, deviceID, current_volume
     except IndexError:
         deviceIDs = ''
@@ -70,7 +70,7 @@ def resume(deviceID):
 #控制
 def spotifycontrol(seq,search):
     auth_tag, deviceID, current_volume = exception_handling()
-    print(auth_tag)
+    #print(auth_tag)
     if auth_tag == False:
         print('==')
         return False  
