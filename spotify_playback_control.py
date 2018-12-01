@@ -22,9 +22,9 @@ def exception_handling():
                 current_volume = devices['devices'][i]['volume_percent']
                 #print(deviceID)
                 return True, deviceID, current_volume
-    except IndexError:
-        deviceIDs = ''
-        current_volume = ''
+    except:
+        deviceID = ''
+        current_volume = 0
         return False, deviceID, current_volume
 #播放狀態
 def playing_status():
