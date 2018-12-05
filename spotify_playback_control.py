@@ -95,11 +95,11 @@ def spotifycontrol(seq,search):
         searchartist(search,deviceID)
         return True
     elif seq == "大聲點":
-        set_volume = current_volume + 10
+        set_volume = current_volume + 20
         sp.volume(set_volume,deviceID)
         return True
     elif seq == "小聲點":
-        set_volume = current_volume -10
+        set_volume = current_volume -20
         sp.volume(set_volume,deviceID)
         return True
     elif seq == "播放":
